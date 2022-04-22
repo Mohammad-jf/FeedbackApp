@@ -1,10 +1,30 @@
+//components
+import Header from "./components/Header";
+import FeedBackList from './components/FeedBackList';
+
+//hooks
+import { useState } from "react";
+
+
+//data
+import { feedBackData } from './data/feedbackData';
+
+
 
 function App() {
-  return (
-    <div>
+  //app level state
+  const [feedBacks,setFeedBacks] = useState(feedBackData);
 
-    </div>
-  );
+
+  return (
+    <>
+      <Header/>
+        <div className="container">
+            <FeedBackList feedBacks={feedBacks}/>
+        </div>
+    </>
+  )
 }
 
 export default App;
+ 
