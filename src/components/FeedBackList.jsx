@@ -1,21 +1,23 @@
 import React from 'react'
 import FeedBackItem from './FeedBackItem';
+import { FcStart } from './../../node_modules/react-icons/fc/index.esm';
 
 
 
 
 
-const FeedBackList = ({feedBacks}) => {
+const FeedBackList = ({feedBacks,deleteHandler}) => {
     if(!feedBacks || feedBacks.length ===0){
         return <p>there is no feedbaack</p>
     }
   return (
       <div className='feedback-list'>
-        {feedBacks.map((feedBack)=>
+        {feedBacks.map((item)=>
             <FeedBackItem 
-            key={feedBack.id}
-            rating={feedBack.rating}
-            text={feedBack.text} 
+            deleteHandler={deleteHandler}
+            key={item.id}
+            item={item}
+          
             />)}
         </div>
   )
