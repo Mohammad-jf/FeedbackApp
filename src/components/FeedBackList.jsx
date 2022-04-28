@@ -1,6 +1,6 @@
 import React from 'react'
 import FeedBackItem from './FeedBackItem';
-import { FcStart } from './../../node_modules/react-icons/fc/index.esm';
+
 
 
 

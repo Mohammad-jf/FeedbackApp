@@ -1,6 +1,7 @@
 import React from 'react'
 
 const FeedBackStats = ({feedBacks}) => {
+  
 //calculating rating average
 let average = feedBacks.reduce((acc,cur)=>{
     return acc + cur.rating 

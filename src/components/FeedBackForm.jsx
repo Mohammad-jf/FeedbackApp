@@ -1,23 +1,22 @@
 import React from 'react'
 import Card from './../shared/Card';
-import { useState } from 'react';
 import Button from './../shared/Button';
+import RatingSelect from './RatingSelect';
+import { useState } from 'react';
 
 
 
 
 
 
-const FeedBackForm = () => {
+const FeedBackForm = ({addFeedBack}) => {
     //state
     const [text,setText] = useState('');
+    const [rating,setRating] = useState(10);
     const [btnDisabled,setBtnDisabled] = useState(true);
     const [message,setMessage] = useState('');
-
-
     const handleTextChange = (e)=>{
         setText(e.target.value);
-
         if(text===''){
             setBtnDisabled(true);
             setMessage(null);
@@ -30,17 +29,35 @@ const FeedBackForm = () => {
         }   
     }
 
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        if(text.trim().length > 10){
+            const newFeedBack = {
+                text:text,
+                rating : rating
+            }
+
+            addFeedBack(newFeedBack);
+            setText('');
+        }
+
+    }
+
+
+
   return (
     <Card>
-        <form>
+        <form onSubmit={handleSubmit}>
             <h2>How would you rate your service with us ?</h2>
 
-            {/* reting select component */}
+            <RatingSelect select={(rating)=>setRating(rating)}/>
 
             <div className="input-group" >
                 <input onChange={handleTextChange} value={text} type="text" placeholder='write a view'/>
                 <Button type='submit' isDisabled={btnDisabled}>Send</Button>
             </div>
+
             {message && <div className='message'>{message}</div>}
         </form>
 
