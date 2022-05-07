@@ -9,6 +9,13 @@ import { useState } from "react";
 import { feedBackData } from './data/feedbackData';
 //uuid
 import {v4 as uuidv4} from 'uuid'
+//pages
+import About from "./pages/About";
+//dependency
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
+//icons
+import AboutIconLink from "./components/AboutIconLink";
+
 
 
 
@@ -31,16 +38,26 @@ function App() {
   }
   
   return (
-    <>
+    <Router>
       <Header/>
         <div className="container">
+          <Routes>
 
-          <FeedBackForm addFeedBack = {addFeedBack}/>
-          <FeedBackStats feedBacks={feedBacks}/>
-          <FeedBackList  feedBacks={feedBacks}  deleteHandler={deleteHandler}/>
-          
-          </div>  
-    </>
+              <Route path="/" exact  element={
+                <>
+                  <FeedBackForm addFeedBack = {addFeedBack}/>
+                  <FeedBackStats feedBacks={feedBacks}/>
+                  <FeedBackList  feedBacks={feedBacks}  deleteHandler={deleteHandler}/>
+                </>
+              }>
+              </Route>
+              
+            <Route element={<About/>} path='/about' />
+
+          </Routes>
+          <AboutIconLink/>
+        </div>  
+    </Router>
   )
 }
 
